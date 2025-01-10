@@ -10,8 +10,8 @@
 
     <!-- Works List -->
     <div class="row">
-      <div *ngFor="let work of works" class="col-4 mb-3">
-        <app-work (click)="selectWork(work)" [work]="work"></app-work>
+      <div *ngFor="let work of works" (click)="selectWork(work)" class="col-4">
+        <app-work [work]="work" [isSelected]="work === selectedWork" class="pointer"></app-work>
       </div>
     </div>
       <!-- Add more cards dynamically -->
