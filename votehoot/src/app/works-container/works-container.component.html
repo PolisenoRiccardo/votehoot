@@ -1,6 +1,23 @@
-
+<nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+  <div class="container-fluid">
+    <h1 class="navbar-brand" href="#">Regolamentare l'Intelligenza Artificiale</h1>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNav">
+      <ul class="navbar-nav ms-auto">
+        <li class="nav-item">
+            <div class="d-flex align-items-center">
+              <a class="nav-link active bg-danger" (click)="addSampleWork()">Add Work</a>
+              <input type="text" class="form-control me-2" placeholder="votekey">
+              <a class="nav-link active" aria-current="page" href="#">Accedi</a>
+            </div>
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav>
 <!-- For Testing -->
-<button class="btn-primary" (click)="addSampleWork()">Add Work</button>
   <!-- Main Container -->
   <div class="container my-5">
     <!-- Header -->
@@ -14,7 +31,6 @@
         <app-work [work]="work" [isSelected]="work === selectedWork" class="pointer"></app-work>
       </div>
     </div>
-      <!-- Add more cards dynamically -->
   </div>
 
-<app-evaluate [work] = "selectedWork"></app-evaluate>
+<app-evaluate [work] = "selectedWork" ></app-evaluate>

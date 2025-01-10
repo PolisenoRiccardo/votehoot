@@ -2,17 +2,10 @@
 <div class="container my-5" >
   <h1 *ngIf="!work"class="text-center mb-4">Seleziona un lavoro per valutarlo</h1>
   <div *ngIf="work" class="border p-4">
-    <h1 class="text-center mb-4">Valutazione {{work.title}}</h1>
+    <h1 class="text-center mb-2">{{work.title}}</h1>
+    <div class="font-weight-bold text-center text-secondary">{{this.work.members.join(' & ')}}</div>
+
     <form id="evaluationForm">
-      <!-- Informazioni Generali -->
-      <div class="mb-3">
-        <label for="workTitle" class="form-label">Titolo del Lavoro</label>
-        <input type="text" class="form-control" id="workTitle" placeholder="Inserisci il titolo del lavoro" required>
-      </div>
-      <div class="mb-3">
-        <label for="evaluatorKeyword" class="form-label">Parola Chiave del Valutatore</label>
-        <input type="text" class="form-control" id="evaluatorKeyword" placeholder="Inserisci la tua parola chiave" required>
-      </div>
 
       <!-- Sezione di Valutazione -->
       <h2 class="h4 mt-4">Criteri di Valutazione</h2>
@@ -20,66 +13,60 @@
         <!-- Chiarezza della Presentazione -->
         <div class="col-md-6">
           <label for="clarity" class="form-label">Chiarezza della Presentazione (max 20)</label>
-          <input type="number" class="form-control" id="clarity" min="0" max="20" required>
+          <input type="number" class="form-control" id="clarity" min="0" max="20" required #clarity>
         </div>
         <!-- Completezza dell'Analisi -->
         <div class="col-md-6">
           <label for="completeness" class="form-label">Completezza dell'Analisi (max 25)</label>
-          <input type="number" class="form-control" id="completeness" min="0" max="25" required>
+          <input type="number" class="form-control" id="completeness" min="0" max="25" required #completeness>
         </div>
         <!-- Originalità del Caso Scelto -->
         <div class="col-md-6">
           <label for="originality" class="form-label">Originalità del Caso Scelto (max 10)</label>
-          <input type="number" class="form-control" id="originality" min="0" max="10" required>
+          <input type="number" class="form-control" id="originality" min="0" max="10" required #originality>
         </div>
         <!-- Note del Relatore -->
         <div class="col-md-6">
           <label for="notesQuality" class="form-label">Note del Relatore (max 10)</label>
-          <input type="number" class="form-control" id="notesQuality" min="0" max="10" required>
+          <input type="number" class="form-control" id="notesQuality" min="0" max="10" required #notesQuality>
         </div>
         <!-- Qualità delle Slide -->
         <div class="col-md-6">
           <label for="slidesQuality" class="form-label">Qualità delle Slide (max 10)</label>
-          <input type="number" class="form-control" id="slidesQuality" min="0" max="10" required>
+          <input type="number" class="form-control" id="slidesQuality" min="0" max="10" required #slidesQuality>
         </div>
         <!-- Capacità di Sintesi -->
         <div class="col-md-6">
           <label for="synthesis" class="form-label">Capacità di Sintesi (max 10)</label>
-          <input type="number" class="form-control" id="synthesis" min="0" max="10" required>
+        <input type="number" class="form-control" id="synthesis" min="0" max="10" required #synthesis>
         </div>
         <!-- Citazioni e Fonti -->
         <div class="col-md-6">
           <label for="citations" class="form-label">Citazioni e Fonti (max 5)</label>
-          <input type="number" class="form-control" id="citations" min="0" max="5" required>
+          <input type="number" class="form-control" id="citations" min="0" max="5" required #citations>
         </div>
         <!-- Soluzioni Proposte -->
         <div class="col-md-6">
           <label for="solutions" class="form-label">Soluzioni Proposte (max 20)</label>
-          <input type="number" class="form-control" id="solutions" min="0" max="20" required>
+          <input type="number" class="form-control" id="solutions" min="0" max="20" required #solutions>
         </div>
         <!-- Capacità di Coinvolgimento -->
         <div class="col-md-6">
           <label for="engagement" class="form-label">Capacità di Coinvolgimento (max 5)</label>
-          <input type="number" class="form-control" id="engagement" min="0" max="5" required>
+          <input type="number" class="form-control" id="engagement" min="0" max="5" required #engagement>
         </div>
         <!-- Rispetto dei Tempi -->
         <div class="col-md-6">
           <label for="timing" class="form-label">Rispetto dei Tempi (max 5)</label>
-          <input type="number" class="form-control" id="timing" min="0" max="5" required>
+          <input type="number" class="form-control" id="timing" min="0" max="5" required #timing>
         </div>
-      </div>
-
-      <!-- Commenti -->
-      <div class="mt-4">
-        <label for="comments" class="form-label">Commenti</label>
-        <textarea class="form-control" id="comments" rows="4" placeholder="Inserisci eventuali commenti"></textarea>
       </div>
 
       <!-- Pulsanti -->
       <div class="d-flex justify-content-end mt-4">
-        <button type="reset" class="btn btn-secondary me-2">Reset</button>
         <button type="submit" class="btn btn-primary">Invia Valutazione</button>
       </div>
+
     </form>
   </div>
 </div>
