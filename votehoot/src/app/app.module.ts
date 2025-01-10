@@ -8,11 +8,13 @@ import { AngularFirestoreModule } from '@angular/fire/compat/firestore';
 import { environment } from '../environments/environment';
 import { WorksContainerComponent } from './works-container/works-container.component';
 import { WorkComponent } from './work/work.component';
+import { EvaluateComponent } from './evaluate/evaluate.component';
 @NgModule({
   declarations: [
     AppComponent,
     WorksContainerComponent,
-    WorkComponent
+    WorkComponent,
+    EvaluateComponent
   ],
   imports: [
     BrowserModule,

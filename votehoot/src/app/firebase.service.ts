@@ -20,5 +20,14 @@ export class FirebaseService {
   getWorks() {
     return this.firestore.collection('works').valueChanges();
   }
-  
+
+  addWork(work: { id: number, title: string, members: string[] }) {
+    return this.firestore.collection('works').add(work)
+      .then(() => {
+        console.log('Documento aggiunto con successo!');
+      })
+      .catch(error => {
+        console.error('Errore durante l\'aggiunta del documento: ', error);
+      });
+  }
 }
