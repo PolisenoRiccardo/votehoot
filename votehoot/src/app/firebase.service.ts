@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { AngularFirestore } from '@angular/fire/compat/firestore';
-import { environment } from '../environments/environment';  // Assicurati che la configurazione Firebase sia in environment.ts
+import firebase from 'firebase/compat/app'; // Import compat per FieldValue
+import { environment } from '../environments/environment'; // Assicurati che la configurazione Firebase sia corretta
 
 import { Work } from './work.model';
 import { Evaluation } from './evaluation.model';
@@ -9,18 +10,33 @@ import { Evaluation } from './evaluation.model';
   providedIn: 'root'
 })
 export class FirebaseService {
-
   constructor(private firestore: AngularFirestore) {
-    // Firebase è già inizializzato tramite AngularFireModule nel modulo principale
-    console.log(environment);  // Verifica che l'oggetto environment sia configurato correttamente
+    // Verifica che Firebase sia configurato correttamente
+    console.log('Firebase environment:', environment);
   }
 
-  // Metodo per ottenere tutti i lavori
+  /**
+   * Ottiene tutti i lavori dalla collezione "works".
+   * @returns Observable contenente i lavori.
+   */
   getWorks() {
-    return this.firestore.collection('works').valueChanges();
+    return this.firestore.collection<Work>('works').valueChanges({ idField: 'id' });
   }
 
-  addEvaluation(workId: number, evaluation: Evaluation) {
-    // da implementare
+  addEvaluation(workId: number, evaluation: Evaluation): Promise<void> {
+
+    return this.firestore
+      .collection("works")
+      .doc(workId.toString())
+      .update({
+        evaluations: firebase.firestore.FieldValue.arrayUnion(evaluation.toFirestoreObject()) // Usa arrayUnion per aggiungere alla lista
+      })
+      .then(() => {
+        console.log("Valutazione aggiunta con successo!");
+      })
+      .catch((error) => {
+        console.error("Errore durante l'aggiunta della valutazione:", error);
+        throw error;
+      });
   }
 }

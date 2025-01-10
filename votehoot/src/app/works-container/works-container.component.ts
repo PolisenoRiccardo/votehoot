@@ -20,7 +20,7 @@ export class WorksContainerComponent implements OnInit {
   }
 
   getWorks(): void {
-    this.firebaseService.getWorks().subscribe(data => {
+    this.firebaseService.getWorks().subscribe((data: any) => {
       console.log('Dati ricevuti:', data);
       this.firebaseWorks = data;
       this.works = this.firebaseWorks.map((work: any) => {
@@ -36,16 +36,6 @@ export class WorksContainerComponent implements OnInit {
   selectWork(work: Work): void {
     this.selectedWork = work;
     console.log('Selected work:', this.selectedWork);
-  }
-
-  // For testing
-  addSampleWork(): void {
-    this.firebaseService.addWork({
-      id: 96,
-      title: 'Sample work',
-      members: ['John Doe', 'Jane Doe']
-    });
-    this.getWorks();
   }
 
 

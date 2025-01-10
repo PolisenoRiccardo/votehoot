@@ -49,4 +49,35 @@ export class Evaluation {
       this.timing
     );
   }
+
+  evaluationArray(): number[] { 
+    return [
+      this.clarity,
+      this.completeness,
+      this.originality,
+      this.notesQuality,
+      this.slidesQuality,
+      this.synthesis,
+      this.citations,
+      this.solutions,
+      this.engagement,
+      this.timing
+    ];
+  }
+
+  // Metodo per trasformare l'oggetto in un oggetto piatto
+  toFirestoreObject() {
+    return {
+      clarity: this.clarity,
+      completeness: this.completeness,
+      originality: this.originality,
+      notesQuality: this.notesQuality,
+      slidesQuality: this.slidesQuality,
+      synthesis: this.synthesis,
+      citations: this.citations,
+      solutions: this.solutions,
+      engagement: this.engagement,
+      timing: this.timing
+    };
+  }
 }

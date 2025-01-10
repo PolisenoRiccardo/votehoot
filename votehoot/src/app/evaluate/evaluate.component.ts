@@ -14,8 +14,23 @@ export class EvaluateComponent {
   evaluation !: Evaluation;
   constructor(private firestoreService: FirebaseService) {}
 
-  evaluate(clarity: number, completeness: number, originality: number, notesQuality: number, slidesQuality: number, synthesis: number, citations: number, solutions: number, engagement: number, timing: number): void {
-    this.evaluation = new Evaluation(clarity, completeness, originality, notesQuality, slidesQuality, synthesis, citations, solutions, engagement, timing);
+  evaluate(clarity: HTMLInputElement, completeness: HTMLInputElement, originality: HTMLInputElement, notesQuality: HTMLInputElement, slidesQuality: HTMLInputElement, synthesis: HTMLInputElement, citations: HTMLInputElement, solutions: HTMLInputElement, engagement: HTMLInputElement, timing: HTMLInputElement): void {
+    this.evaluation = new Evaluation(
+      this.numberize(clarity),
+      this.numberize(completeness),
+      this.numberize(originality),
+      this.numberize(notesQuality),
+      this.numberize(slidesQuality),
+      this.numberize(synthesis),
+      this.numberize(citations),
+      this.numberize(solutions),
+      this.numberize(engagement),
+      this.numberize(timing)
+    );
     this.firestoreService.addEvaluation(this.work.id, this.evaluation);
+  }
+
+  numberize(data: HTMLInputElement): number {
+    return Number(data.value);
   }
 }
