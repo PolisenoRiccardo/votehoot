@@ -13,10 +13,16 @@ export class WorksContainerComponent implements OnInit {
   firebaseWorks: any;
   works: Work[] = [];
   selectedWork !: Work;
+  voteKey !: string;
+  users: any;
+  votekeys: string[] = [];
+  userName !: string;
+  loggedUser !: any;
   constructor(private firebaseService: FirebaseService) {}
 
   ngOnInit(): void {
     this.getWorks();
+    this.getUsers();
   }
 
   getWorks(): void {
@@ -33,11 +39,33 @@ export class WorksContainerComponent implements OnInit {
     });
    }
 
+   getUsers(): void {
+    this.firebaseService.getUsers().subscribe((data: any) => {
+      console.log('Utenti ricevuti:', data);
+      this.users = data;
+      for (let i = 0; i < data.length; i++) {
+        this.votekeys.push(data[i].votekey);
+      }
+    });
+   }
+
   selectWork(work: Work): void {
     this.selectedWork = work;
     console.log('Selected work:', this.selectedWork);
   }
 
-
+  login(userKey:HTMLInputElement): void {
+    
+    if (this.votekeys.includes(userKey.value)) {
+      this.voteKey = userKey.value;
+      this.loggedUser = this.users.find((item: any) => item.votekey === this.voteKey)
+      this.userName = this.loggedUser.Nome;
+      console.log('Nome trovato:', this.userName);
+      console.log('Utente trovato:', this.voteKey);
+    } else {
+      alert('Utente non trovato!');
+    }
+    
+  }
 }
 

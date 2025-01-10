@@ -64,9 +64,11 @@
 
       <!-- Pulsanti -->
       <div class="d-flex justify-content-end mt-4">
-        <button type="submit" class="btn btn-primary" (click)="evaluate(clarity, completeness, originality, notesQuality, slidesQuality, synthesis, citations, solutions, engagement, timing)">Invia Valutazione</button>
+        <button type="submit" class="btn btn-primary" [disabled]="isDisabled()" (click)="evaluate(clarity, completeness, originality, notesQuality, slidesQuality, synthesis, citations, solutions, engagement, timing)">Invia Valutazione</button>
       </div>
 
     </form>
   </div>
 </div>
+
+<button (click)="stampa()">Stampa</button>

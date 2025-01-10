@@ -23,6 +23,10 @@ export class FirebaseService {
     return this.firestore.collection<Work>('works').valueChanges({ idField: 'id' });
   }
 
+  getUsers() {
+    return this.firestore.collection('evaluators').valueChanges({ idField: 'id' })
+  }
+
   addEvaluation(workId: number, evaluation: Evaluation): Promise<void> {
 
     return this.firestore
@@ -39,4 +43,22 @@ export class FirebaseService {
         throw error;
       });
   }
+
+  addEvaluated(workId: number, evaluatorId: string): Promise<void> {
+    return this.firestore
+      .collection("evaluators")
+      .doc(evaluatorId.toString())
+      .update({
+        evaluated: firebase.firestore.FieldValue.arrayUnion(workId) // Usa arrayUnion per aggiungere alla lista
+      })
+      .then(() => {
+        console.log("Valutazione aggiunta con successo!");
+      })
+      .catch((error) => {
+        console.error("Errore durante l'aggiunta del valutatore:", error);
+        throw error;
+      });
+  }
+
+
 }

@@ -8,17 +8,23 @@
       <ul class="navbar-nav ms-auto">
         <li class="nav-item">
             <div class="d-flex align-items-center">
-              <input type="text" class="form-control me-2" placeholder="votekey">
-              <a class="nav-link active" aria-current="page" href="#">Accedi</a>
+   
+              <input type="text" class="form-control me-2" placeholder="Vote key" #userKey>
+              <a class="nav-link active" aria-current="page" (click)="login(userKey)">Accedi</a>
             </div>
         </li>
       </ul>
     </div>
   </div>
 </nav>
+
+<div class="d-flex justify-content-center">
+  <h1 *ngIf="!userName" class="mt-4">Accedi per Valutare</h1>
+  <h1 *ngIf="userName" class="mt-4">Ciao {{userName}}</h1>
+</div>
 <!-- For Testing -->
   <!-- Main Container -->
-  <div class="container my-5">
+  <div class="container mt-3">
     <!-- Header -->
     <div class="d-flex justify-content-between align-items-center mb-4">
       <h1 class="h3">Elenco dei Lavori</h1>
@@ -32,4 +38,4 @@
     </div>
   </div>
 
-<app-evaluate [work] = "selectedWork" ></app-evaluate>
+<app-evaluate [work] = "selectedWork" [userKey]="voteKey" [loggedUser] = "loggedUser"></app-evaluate>
