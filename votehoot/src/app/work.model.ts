@@ -1,13 +1,13 @@
 import { Evaluation } from './evaluation.model';
  export class Work {
   // Informazioni generali
-  id: string; // Identificativo del lavoro
+  id: number; // Identificativo del lavoro
   title: string; // Titolo del lavoro
   members: string[]; // Descrizione del lavoro// Data di creazione
   evaluations !: Evaluation[]; // Elenco delle valutazioni
 
   constructor(
-    id: string,
+    id: number,
     title: string,
     members: string[],
   ) {
