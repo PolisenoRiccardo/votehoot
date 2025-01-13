@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { AngularFirestore } from '@angular/fire/compat/firestore';
 import firebase from 'firebase/compat/app'; // Import compat per FieldValue
 import { environment } from '../environments/environment'; // Assicurati che la configurazione Firebase sia corretta
-
+import { v4 as uuidv4 } from 'uuid';
 import { Work } from './work.model';
 import { Evaluation } from './evaluation.model';
 
@@ -60,5 +60,36 @@ export class FirebaseService {
       });
   }
 
-
+  addWork(): Promise<void>
+  {
+    var workId = uuidv4().toString()
+    const newWork = {
+      workId,
+      title: 'Assistenti Virtuali Medici: Considerazioni Etiche',
+      members: ['John', 'Doe'],
+      evaluations: [
+        {
+          citations: 678,
+          clarity: 454,
+          completeness: 566,
+          engagement: 678,
+          notesQuality: 45645,
+          originality: 6456,
+          slidesQuality: 7,
+          solutions: 678,
+          synthesis: 5,
+          timing: 68,
+        },
+      ],
+    }
+    return this.firestore
+      .collection("works")
+      .add(newWork).then(() => {
+        console.log("Work added successfully!");
+      })
+      .catch((error) => {
+        console.error("Failed to add work:", error);
+        throw error;
+      });
+  }
 }

@@ -33,7 +33,8 @@ export class WorksContainerComponent implements OnInit {
         return new Work(
           work.id,
           work.title,
-          work.members
+          work.members,
+          work.workScore
         );
       });
     });
@@ -66,6 +67,11 @@ export class WorksContainerComponent implements OnInit {
       alert('Utente non trovato!');
     }
     
+  }
+
+  addWork(): void{
+    console.log('Adding work...');
+    this.firebaseService.addWork();
   }
 }
 

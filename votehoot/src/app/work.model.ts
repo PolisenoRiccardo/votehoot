@@ -5,15 +5,18 @@ import { Evaluation } from './evaluation.model';
   title: string; // Titolo del lavoro
   members: string[]; // Descrizione del lavoro// Data di creazione
   evaluations !: Evaluation[]; // Elenco delle valutazioni
+  workScore : number;
 
   constructor(
     id: number,
     title: string,
     members: string[],
+    workScore: number
   ) {
     this.id = id;
     this.title = title;
     this.members = members;
+    this.workScore = workScore
   }
 
   // Metodo per calcolare il punteggio medio complessivo

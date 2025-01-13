@@ -28,11 +28,12 @@
     <!-- Header -->
     <div class="d-flex justify-content-between align-items-center mb-4">
       <h1 class="h3">Elenco dei Lavori</h1>
+      <button class="btn btn-success" (click)="addWork()">Aggiungi Lavoro</button>
     </div>
 
     <!-- Works List -->
     <div class="row">
-      <div *ngFor="let work of works" (click)="selectWork(work)" class="col-4">
+      <div *ngFor="let work of works" (click)="selectWork(work)" class="col-6">
         <app-work [work]="work" [isSelected]="work === selectedWork" class="pointer"></app-work>
       </div>
     </div>
