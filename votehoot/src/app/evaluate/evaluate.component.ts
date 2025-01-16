@@ -35,9 +35,16 @@ export class EvaluateComponent {
       this.numberize(timing)
     );
     
-    this.firestoreService.addEvaluation(this.work.id, this.evaluation);
-    this.firestoreService.addEvaluated(this.work.id, this.loggedUser.id);
-    this.getUsers();
+    if (this.evaluation.totalScore() > 120) {
+      alert('Il punteggio totale non può superare 120, RISPETTA I LIMITI!');
+    } else { 
+      
+      this.firestoreService.addEvaluation(this.work.id, this.evaluation);
+      this.firestoreService.addEvaluated(this.work.id, this.loggedUser.id);
+      this.getUsers(); 
+    }
+
+    
   }
 
   numberize(data: HTMLInputElement): number {
