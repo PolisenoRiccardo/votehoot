@@ -34,7 +34,13 @@ export class Work {
     // Calcola la media delle somme
     const totalSum = sums.reduce((acc, current) => acc + current, 0);
     const average = totalSum / sums.length;
+    const roundedAverage = Math.round(average / 12);
+    
+    if (roundedAverage > 1) {
+      return roundedAverage;
+    } else {
+      return 1;
+    }
 
-    return Math.round(average / 12);
   }
 }

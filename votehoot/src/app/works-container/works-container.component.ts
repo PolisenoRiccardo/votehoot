@@ -27,7 +27,7 @@ export class WorksContainerComponent implements OnInit {
 
   getWorks(): void {
     this.firebaseService.getWorks().subscribe((data: any) => {
-      console.log('Dati ricevuti:', data);
+      //console.log('Dati ricevuti:', data);
       this.firebaseWorks = data;
       this.works = this.firebaseWorks.map((work: any) => {
         return new Work(
@@ -42,7 +42,7 @@ export class WorksContainerComponent implements OnInit {
 
    getUsers(): void {
     this.firebaseService.getUsers().subscribe((data: any) => {
-      console.log('Utenti ricevuti:', data);
+      //console.log('Utenti ricevuti:', data);
       this.users = data;
       for (let i = 0; i < data.length; i++) {
         this.votekeys.push(data[i].votekey);
@@ -52,7 +52,7 @@ export class WorksContainerComponent implements OnInit {
 
   selectWork(work: Work): void {
     this.selectedWork = work;
-    console.log('Selected work:', this.selectedWork);
+    //console.log('Selected work:', this.selectedWork);
   }
 
   login(userKey:HTMLInputElement): void {
@@ -61,8 +61,8 @@ export class WorksContainerComponent implements OnInit {
       this.voteKey = userKey.value;
       this.loggedUser = this.users.find((item: any) => item.votekey === this.voteKey)
       this.userName = this.loggedUser.Nome;
-      console.log('Nome trovato:', this.userName);
-      console.log('Utente trovato:', this.voteKey);
+      //console.log('Nome trovato:', this.userName);
+      //console.log('Utente trovato:', this.voteKey);
     } else {
       alert('Utente non trovato!');
     }

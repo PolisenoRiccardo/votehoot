@@ -23,10 +23,19 @@ export class EvaluateComponent {
             citations: HTMLInputElement, solutions: HTMLInputElement, engagement: HTMLInputElement, timing: HTMLInputElement): void {
 
     const inputs = [clarity.value, completeness.value, originality.value, notesQuality.value, slidesQuality.value, synthesis.value, citations.value, solutions.value, engagement.value, timing.value];
+    const maxValues = [20, 25, 10, 10, 10, 5, 20, 5, 5];
+    
     if (inputs.some(input => input === "")) {
       alert('Tutti i campi devono essere compilati! Attenziòn!');
       return;
     }
+
+    for (let i = 0; i < inputs.length; i++) {
+      if (parseInt(inputs[i]) > maxValues[i]) {
+        return;
+      }
+    }
+  
 
     this.evaluation = new Evaluation(
       this.numberize(clarity),
@@ -40,16 +49,10 @@ export class EvaluateComponent {
       this.numberize(engagement),
       this.numberize(timing)
     );
-    
-    if (this.evaluation.totalScore() > 120) {
-      alert('Il punteggio totale non può superare 120, RISPETTA I LIMITI!');
-    } else { 
-      
+     
       this.firestoreService.addEvaluation(this.work.id, this.evaluation);
       this.firestoreService.addEvaluated(this.work.id, this.loggedUser.id);
-      this.getUsers(); 
-    }
-
+      this.getUsers();  
   }
 
   numberize(data: HTMLInputElement): number {

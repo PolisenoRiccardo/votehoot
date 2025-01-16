@@ -1,8 +1,6 @@
 import { Injectable } from '@angular/core';
 import { AngularFirestore } from '@angular/fire/compat/firestore';
 import firebase from 'firebase/compat/app'; // Import compat per FieldValue
-import { environment } from '../environments/environment'; // Assicurati che la configurazione Firebase sia corretta
-
 import { Work } from './work.model';
 import { Evaluation } from './evaluation.model';
 
@@ -10,10 +8,7 @@ import { Evaluation } from './evaluation.model';
   providedIn: 'root'
 })
 export class FirebaseService {
-  constructor(private firestore: AngularFirestore) {
-    // Verifica che Firebase sia configurato correttamente
-    console.log('Firebase environment:', environment);
-  }
+  constructor(private firestore: AngularFirestore) {}
 
   /**
    * Ottiene tutti i lavori dalla collezione "works".
