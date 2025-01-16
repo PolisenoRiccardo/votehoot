@@ -34,6 +34,7 @@ export class EvaluateComponent {
       this.numberize(engagement),
       this.numberize(timing)
     );
+    
     this.firestoreService.addEvaluation(this.work.id, this.evaluation);
     this.firestoreService.addEvaluated(this.work.id, this.loggedUser.id);
     this.getUsers();
@@ -44,7 +45,8 @@ export class EvaluateComponent {
   }
 
   alreadyEvaluated(): boolean {
-    if (this.loggedUser.evaluated.includes(this.work.id)) {
+    let votiInviati = this.loggedUser.evaluated || [];
+    if (votiInviati.includes(this.work.id)) {
       return true;
     } else return false;
   }
@@ -52,7 +54,7 @@ export class EvaluateComponent {
   isDisabled(): boolean {
     if (this.loggedUser && !(this.alreadyEvaluated())) {
     return false;
-    } else return true; 
+    } else return true;
   }
 
   getUsers(): void {
@@ -63,7 +65,4 @@ export class EvaluateComponent {
     });
    }
   
-  stampa() {
-    console.log(this.loggedUser); 
-  }
 }

@@ -1,6 +1,7 @@
 <div class="card-body">
   <h5 class="card-title">{{work.title}}</h5>
   <p class="card-text">{{this.work.members.join(', ')}}</p>
+  <p class="card-text">{{this.work.calculateAverageScores()}}/10</p>
   <!--
   <p class="text-muted mb-1">Media Valutazioni: {{work.calculateAverageScore()}}</p>
   -->

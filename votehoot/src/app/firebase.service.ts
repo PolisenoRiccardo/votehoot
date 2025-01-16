@@ -27,6 +27,7 @@ export class FirebaseService {
     return this.firestore.collection('evaluators').valueChanges({ idField: 'id' })
   }
 
+
   addEvaluation(workId: number, evaluation: Evaluation): Promise<void> {
 
     return this.firestore
@@ -59,6 +60,5 @@ export class FirebaseService {
         throw error;
       });
   }
-
 
 }

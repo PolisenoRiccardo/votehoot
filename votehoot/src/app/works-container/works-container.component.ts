@@ -33,7 +33,8 @@ export class WorksContainerComponent implements OnInit {
         return new Work(
           work.id,
           work.title,
-          work.members
+          work.members,
+          work.evaluations
         );
       });
     });
