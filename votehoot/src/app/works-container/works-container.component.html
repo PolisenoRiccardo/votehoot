@@ -1,4 +1,4 @@
-<nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+<nav class="navbar navbar-expand-lg navbar-dark bg-success">
   <div class="container-fluid">
     <h1 class="navbar-brand" href="#">Regolamentare l'Intelligenza Artificiale</h1>
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
@@ -33,7 +33,7 @@
     <!-- Works List -->
     <div class="row">
       <div *ngFor="let work of works" (click)="selectWork(work)" class="col-6">
-        <app-work [work]="work" [isSelected]="work === selectedWork" class="pointer"></app-work>
+        <app-work [work]="work" [isSelected]="work === selectedWork" class="pointer" class="card h-90"></app-work>
       </div>
     </div>
   </div>

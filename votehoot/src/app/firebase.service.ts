@@ -15,7 +15,7 @@ export class FirebaseService {
    * @returns Observable contenente i lavori.
    */
   getWorks() {
-    return this.firestore.collection<Work>('works').valueChanges({ idField: 'id' });
+    return this.firestore.collection<Work>('works_well').valueChanges({ idField: 'id' });
   }
 
   getUsers() {
@@ -26,7 +26,7 @@ export class FirebaseService {
   addEvaluation(workId: number, evaluation: Evaluation): Promise<void> {
 
     return this.firestore
-      .collection("works")
+      .collection("works_well")
       .doc(workId.toString())
       .update({
         evaluations: firebase.firestore.FieldValue.arrayUnion(evaluation.toFirestoreObject()) // Usa arrayUnion per aggiungere alla lista
