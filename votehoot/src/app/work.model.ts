@@ -35,6 +35,6 @@ export class Work {
     const totalSum = sums.reduce((acc, current) => acc + current, 0);
     const average = totalSum / sums.length;
 
-    return Math.floor(average / 12);
+    return Math.round(average / 12);
   }
 }

@@ -22,6 +22,12 @@ export class EvaluateComponent {
             notesQuality: HTMLInputElement, slidesQuality: HTMLInputElement, synthesis: HTMLInputElement, 
             citations: HTMLInputElement, solutions: HTMLInputElement, engagement: HTMLInputElement, timing: HTMLInputElement): void {
 
+    const inputs = [clarity.value, completeness.value, originality.value, notesQuality.value, slidesQuality.value, synthesis.value, citations.value, solutions.value, engagement.value, timing.value];
+    if (inputs.some(input => input === "")) {
+      alert('Tutti i campi devono essere compilati! Attenziòn!');
+      return;
+    }
+
     this.evaluation = new Evaluation(
       this.numberize(clarity),
       this.numberize(completeness),
@@ -44,7 +50,6 @@ export class EvaluateComponent {
       this.getUsers(); 
     }
 
-    
   }
 
   numberize(data: HTMLInputElement): number {
@@ -66,7 +71,6 @@ export class EvaluateComponent {
 
   getUsers(): void {
     this.firestoreService.getUsers().subscribe((data: any) => {
-      console.log('Utenti ricevuti:', data);
       this.users = data;
       this.loggedUser = this.users.find((item: any) => item.votekey === this.userKey)
     });
